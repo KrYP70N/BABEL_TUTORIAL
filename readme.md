@@ -1,34 +1,36 @@
-# BABEL
+# Compiler Assumptions
 
-Babel is a toolchain that is mainly used to convert ECMAScript 2015+ code into a backwards compatible version of JavaScript in current and older browsers or environments. Here are the main things Babel can do for you:
+You can specify an assumptions option in your configuration to tell Babel which assumptions it can make about your code, to better optimize the compilation result.
 
-- Transform syntax
-- Polyfill features that are missing in your target environment (through a third-party polyfill such as core-js)
-- Source code transformations (codemods)
-- And more! (check out these videos for inspiration)
+You can reference in [here](https://babeljs.io/docs/assumptions)
+
+## Sample Assumptions
 
 ```
-// Babel Input: ES2015 arrow function
-[1, 2, 3].map(n => n + 1);
-// Babel Output: ES5 equivalent
-[1, 2, 3].map(function(n) {
-  return n + 1;
-});
+{
+  "presets": [
+    ["@babel/preset-env", { "exclude": ["transform-typeof-symbol"] }]
+  ],
+  "assumptions": {
+    "arrayLikeIsIterable": true,
+    "constantReexports": true,
+    "ignoreFunctionLength": true,
+    "ignoreToPrimitiveHint": true,
+    "mutableTemplateObject": true,
+    "noClassCalls": true,
+    "noDocumentAll": true,
+    "noObjectSuper": true,
+    "noUndeclaredVariablesCheck": true,
+    "objectRestNoSymbols": true,
+    "privateFieldsAsProperties": true,
+    "pureGetters": true,
+    "setClassMethods": true,
+    "setComputedProperties": true,
+    "setPublicClassFields": true,
+    "setSpreadProperties": true,
+    "skipForOfIteratorClosing": true,
+    "superIsCallableConstructor": true
+  }
+}
 ```
-
-
-## Pluggable
-
-Babel is built out of plugins. Compose your own transformation pipeline using existing plugins or write your own. Easily use a set of plugins by using or creating a `preset`.
-
-You can use standard plugin template by using `[generator-babel-plugin](https://github.com/babel/generator-babel-plugin)`
-
-
-## CONTENTS
-
-[Overview](https://github.com/KrYP70N/BABEL_TUTORIAL/tree/feature/overview)
-
-[Configuration](https://github.com/KrYP70N/BABEL_TUTORIAL/tree/feature/configuration)
-
-[Plugins](https://github.com/KrYP70N/BABEL_TUTORIAL/tree/feature/plugins)
 
