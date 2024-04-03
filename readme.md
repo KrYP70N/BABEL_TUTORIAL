@@ -30,4 +30,5 @@ You can use standard plugin template by using `[generator-babel-plugin](https://
 
 [Configuration](https://github.com/KrYP70N/BABEL_TUTORIAL/tree/feature/configuration)
 
+[Plugins](https://github.com/KrYP70N/BABEL_TUTORIAL/tree/feature/plugins)
 
