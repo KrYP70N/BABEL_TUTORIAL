@@ -1,31 +1,72 @@
-# BABEL
+# Overview
 
-Babel is a toolchain that is mainly used to convert ECMAScript 2015+ code into a backwards compatible version of JavaScript in current and older browsers or environments. Here are the main things Babel can do for you:
+This guide will show you how to compile your JavaScript application code that uses ES2015+ syntax into code that works in current browsers. That will involve both transforming new syntax and polyfilling missing features.
 
-- Transform syntax
-- Polyfill features that are missing in your target environment (through a third-party polyfill such as core-js)
-- Source code transformations (codemods)
-- And more! (check out these videos for inspiration)
+You can follow the step-by-step instructions outlined in the following sections.
+
+
+## Step 1
+
+Running these commands to install the packages:
 
 ```
-// Babel Input: ES2015 arrow function
-[1, 2, 3].map(n => n + 1);
+npm install --save-dev @babel/core @babel/cli @babel/preset-env
+```
 
-// Babel Output: ES5 equivalent
-[1, 2, 3].map(function(n) {
-  return n + 1;
-});
+- `@babel/core`       : The @babel/core package is a fundamental component of the Babel JavaScript compiler
+- `@babel/cli`        : The @babel/cli package is a command-line interface (CLI) tool provided by Babel, which allows developers to use Babel from the terminal or command prompt
+- `@babel/preset-env` : The @babel/preset-env package is a preset provided by Babel that allows developers to use the latest JavaScript syntax and features without worrying about compatibility issues with specific browsers or environments
+
+
+## Step 2
+
+Create a babel config named `babel.config.json` in the root.
+
+```
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "edge": "17",
+          "firefox": "60",
+          "chrome": "67",
+          "safari": "11.1"
+        },
+        "useBuiltIns": "usage",
+        "corejs": "3.6.5"
+      }
+    ]
+  ]
+}
+```
+
+- `presets` : A pre-defined set of Babel plugins and configurations. Presets make it easier to configure Babel by bundling together commonly used plugins and settings for specific use cases.
+- We can use multiple preset in single config.
+- You can check `@babel/preset-env` options [here](https://babeljs.io/docs/babel-preset-env)
+
+
+## Step 3
+
+Add the code under following snippet to the `scripts` section of `package.json`. 
+
+```
+build: "./node_modules/.bin/babel src --out-dir lib"
 ```
 
 
-## Pluggable
+## Step 4
 
-Babel is built out of plugins. Compose your own transformation pipeline using existing plugins or write your own. Easily use a set of plugins by using or creating a `preset`.
+Create `src` folder under `root` and add following ES6 arrow function code. 
 
-You can use standard plugin template by using `[generator-babel-plugin](https://github.com/babel/generator-babel-plugin)`
+```
+const fun = () => {
+    console.log('hello world')
+}
+```
 
 
+## Step 5
 
-## CONTENTS
-
-- [Overview](https://github.com/KrYP70N/BABEL_TUTORIAL/tree/feature/overview)
+Run `npm run buid` in command promp. After running this command compile all your code from the `src` directory to `lib`
