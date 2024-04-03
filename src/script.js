@@ -1,3 +1,1 @@
-const fun = () => {
-    console.log('helo world')
-}
+[1, 2, 3].map(n => n + 1);
