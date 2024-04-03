@@ -1,30 +1,58 @@
 # BABEL
 
-Babel is a toolchain that is mainly used to convert ECMAScript 2015+ code into a backwards compatible version of JavaScript in current and older browsers or environments. Here are the main things Babel can do for you:
+Babel is able to configure like other tools: ESLint, Prettier. There are two types of bable config type.
 
-- Transform syntax
-- Polyfill features that are missing in your target environment (through a third-party polyfill such as core-js)
-- Source code transformations (codemods)
-- And more! (check out these videos for inspiration)
+**babel.config.json** : For the `mono-repo` projects and compile `node_modules`
+
+**.babelrc.json**     : For only apply to single parts of your projects.
+
+
+
+## babel.config.json
+
+Create a file called `babel.config.json` with the following content at the root of your project (where the `package.json` is).
+You can check babel config documentation in [here](https://babeljs.io/docs/config-files#project-wide-configuration)
 
 ```
-// Babel Input: ES2015 arrow function
-[1, 2, 3].map(n => n + 1);
-// Babel Output: ES5 equivalent
-[1, 2, 3].map(function(n) {
-  return n + 1;
-});
+{
+  "presets": [...],
+  "plugins": [...]
+}
 ```
 
 
-## Pluggable
+## .babelrc.json
 
-Babel is built out of plugins. Compose your own transformation pipeline using existing plugins or write your own. Easily use a set of plugins by using or creating a `preset`.
+Create a file called `.babelrc.json` with the following content in your project.
 
-You can use standard plugin template by using `[generator-babel-plugin](https://github.com/babel/generator-babel-plugin)`
+```
+{
+  "presets": [...],
+  "plugins": [...]
+}
+```
+
+You can check babelrc config documentation in [here](https://babeljs.io/docs/config-files#file-relative-configuration)
 
 
-## CONTENTS
 
-[Overview](https://github.com/KrYP70N/BABEL_TUTORIAL/tree/feature/overview)
+## package.json
+
+Alternatively, you can choose to specify your .babelrc.json config from within package.json using the babel key like so:
+
+```
+{
+  "name": "my-package",
+  "version": "1.0.0",
+  "babel": {
+    "presets": [ ... ],
+    "plugins": [ ... ],
+  }
+}
+```
+
+
+
+
+
 
