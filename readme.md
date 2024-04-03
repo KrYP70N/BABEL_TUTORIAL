@@ -28,3 +28,6 @@ You can use standard plugin template by using `[generator-babel-plugin](https://
 
 [Overview](https://github.com/KrYP70N/BABEL_TUTORIAL/tree/feature/overview)
 
+[Configuration](https://github.com/KrYP70N/BABEL_TUTORIAL/tree/feature/configuration)
+
+
