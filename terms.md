@@ -1,0 +1,3 @@
+### codemods
+
+Codemods, short for "code modifications," refer to scripts or tools used to automate changes to source code. They are typically employed during code refactoring or migration processes, allowing developers to make sweeping changes to codebases efficiently and consistently. Codemods analyze the codebase's structure, identify patterns, and apply transformations according to predefined rules or scripts. This automation saves developers time and reduces the potential for human error when making large-scale code modifications. Codemods are especially useful when updating code to comply with new standards, frameworks, or best practices.
