@@ -1,34 +1,74 @@
-# BABEL
+# Plugins
 
-Babel is a toolchain that is mainly used to convert ECMAScript 2015+ code into a backwards compatible version of JavaScript in current and older browsers or environments. Here are the main things Babel can do for you:
+Babel's code transformations are enabled by applying plugins to your [configuration](https://github.com/KrYP70N/BABEL_TUTORIAL/tree/feature/configuration) file.
 
-- Transform syntax
-- Polyfill features that are missing in your target environment (through a third-party polyfill such as core-js)
-- Source code transformations (codemods)
-- And more! (check out these videos for inspiration)
+
+## Using a Plugin
+
+If the plugin is on `npm`, you can pass in the name of the plugin and Babel will check that it's installed in `node_modules`. This is added to the plugins config option, which takes an array. You can also specify relative path of your plugin.
 
 ```
-// Babel Input: ES2015 arrow function
-[1, 2, 3].map(n => n + 1);
-// Babel Output: ES5 equivalent
-[1, 2, 3].map(function(n) {
-  return n + 1;
-});
+// babel.config.json
+{
+  "plugins": ["babel-plugin-myPlugin", "./node_modules/asdf/plugin", "@babel/plugin-transform-runtime"]
+}
 ```
 
 
-## Pluggable
+## Syntax Plugin
 
-Babel is built out of plugins. Compose your own transformation pipeline using existing plugins or write your own. Easily use a set of plugins by using or creating a `preset`.
+Syntax plugins in Babel allow you to add support for new syntax features or alter existing syntax rules in JavaScript. These plugins are useful for experimenting with new language features or integrating custom syntax into your codebase. Here's a demonstration of how to create and use a simple syntax plugin in Babel:
 
-You can use standard plugin template by using `[generator-babel-plugin](https://github.com/babel/generator-babel-plugin)`
+Inside your project directory, create a new JavaScript file for your custom syntax plugin. Let's name it `custom-syntax-plugin.js`.
+
+```
+// custom-syntax-plugin.js
+module.exports = function(babel) {
+  const { types: t } = babel;
+
+  return {
+    visitor: {
+      // Define your syntax transformation logic here
+      // This example transforms the keyword "hello" to "console.log('Hello')"
+      Identifier(path) {
+        if (path.node.name === 'hello') {
+          path.replaceWith(t.callExpression(
+            t.memberExpression(
+              t.identifier('console'),
+              t.identifier('log')
+            ),
+            [t.stringLiteral('Hello')]
+          ));
+        }
+      }
+    }
+  };
+};
+```
+
+Create a `.babelrc` file in your project directory to configure Babel to use your custom plugin:
+
+```
+{
+  "presets": ["@babel/preset-env"],
+  "plugins": ["./custom-syntax-plugin"]
+}
+```
+
+Create a JavaScript file with some code that uses the custom syntax you defined in your plugin. Let's name it example.js.
+
+```
+// example.js
+hello;
+```
 
 
-## CONTENTS
 
-[Overview](https://github.com/KrYP70N/BABEL_TUTORIAL/tree/feature/overview)
 
-[Configuration](https://github.com/KrYP70N/BABEL_TUTORIAL/tree/feature/configuration)
 
-[Plugins](https://github.com/KrYP70N/BABEL_TUTORIAL/tree/feature/plugins)
+
+
+
+
+
 
