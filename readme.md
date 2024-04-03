@@ -70,3 +70,23 @@ const fun = () => {
 ## Step 5
 
 Run `npm run buid` in command promp. After running this command compile all your code from the `src` directory to `lib`
+
+
+
+## Notes
+
+Babel plugins and presets serve different purposes but are often used together to customize the Babel transformation process according to specific project requirements.
+
+### Babel Plugins
+
+- Babel plugins are individual transformations that modify specific parts of your code.
+- Each plugin typically performs a specific task, such as transforming arrow functions, async functions, or JSX syntax.
+- Plugins can be used to add new language features, apply optimizations, or even perform static analysis on the code.
+- Developers can create custom plugins to tailor Babel's behavior to their specific needs.
+
+### Babel Presets
+
+- Babel presets are collections of plugins bundled together to achieve a particular transformation goal.
+- Presets provide a convenient way to apply multiple transformations or sets of plugins with a single configuration option.
+- There are several official presets provided by the Babel team, such as @babel/preset-env for environment-specific transformations, @babel/preset-react for React-specific transformations, and @babel/preset-typescript for TypeScript support.
+- Developers can also create custom presets to encapsulate a specific set of transformations or plugins tailored for their project's requirements.
